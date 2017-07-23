@@ -15,11 +15,25 @@
         <li><a href="#">Statistics</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a>Date goes here with WebService</a> </li>
+        <li>
+          <article class="weather-element">
+            <div class="col-1">
+              <h5>Current Temprature At Collage</h5>
+            </div>
+            <div class="col-2">
+              <span class="temperature">{{Weather}}°C</span>
+            </div>
+          </article>
+        </li>
       </ul>
     </div>
   </nav>
-  <app-first-component></app-first-component>
+  <div>
+  <div class="rightMenu">  <app-first-component></app-first-component></div>
+  <div class = "mainScreen"><app-google-maps></app-google-maps></div>
+  </div>
+
+
   <footer>
     <p>We are going to Tel Aviv University</p>
     <p>NO MORE MIHLALA</p>
