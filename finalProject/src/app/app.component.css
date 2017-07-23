@@ -1,7 +1,5 @@
-.rightMenu {
-  float:right;
-  width: 20%;
+.parentDiv {
+  position:relative
 }
-.mainScreen{
-  width: 80%;
+.sideRight{
 }

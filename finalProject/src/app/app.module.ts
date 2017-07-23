@@ -7,13 +7,15 @@ import { FirstComponentComponent } from './first-component/first-component.compo
 import { HomeScreenComponent } from './home-screen/home-screen.component';
 import { GoogleMapsComponent } from './google-maps/google-maps.component';
 import { AgmCoreModule } from '@agm/core';
+import { SingleComViewComponent } from './single-com-view/single-com-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstComponentComponent,
     HomeScreenComponent,
-    GoogleMapsComponent
+    GoogleMapsComponent,
+    SingleComViewComponent
   ],
   imports: [
     BrowserModule,
