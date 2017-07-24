@@ -10,7 +10,8 @@ import { AgmCoreModule } from '@agm/core';
 import { SingleComViewComponent } from './single-com-view/single-com-view.component';
 import { AllComViewComponent } from './all-com-view/all-com-view.component';
 import {RouterModule} from '@angular/router';
-import { StatisticsComponent } from './statistics/statistics.component'
+import { StatisticsComponent } from './statistics/statistics.component';
+import { AddNewComComponent } from './add-new-com/add-new-com.component'
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { StatisticsComponent } from './statistics/statistics.component'
     SingleComViewComponent,
     AllComViewComponent,
     StatisticsComponent,
+    AddNewComComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import { StatisticsComponent } from './statistics/statistics.component'
       {path:'updateComs', component:AllComViewComponent},
       {path:'statistics', component:StatisticsComponent},
       {path:'home', component:HomeScreenComponent},
+      {path:'addCom', component:AddNewComComponent},
       { path: '', redirectTo: '/home', pathMatch: 'full'}
     ]),
     AgmCoreModule.forRoot({
