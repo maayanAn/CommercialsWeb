@@ -9,10 +9,9 @@
         <a class="navbar-brand" href="#">CommercialsShit</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Main Page</a></li>
-        <li><a href="#">Update Coms</a></li>
-        <li><a href="#">Add Com</a></li>
-        <li><a href="#">Statistics</a></li>
+        <li><a routerLink="/home" routerLinkActive="active">Main Page</a></li>
+        <li><a routerLink="/updateComs" routerLinkActive="active">Update Coms</a></li>
+        <li><a routerLink="/statistics" routerLinkActive="active">Statistics</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -29,8 +28,10 @@
     </div>
   </nav>
   <div>
-    <app-single-com-view></app-single-com-view>
+    <router-outlet></router-outlet>
+    <!--<app-single-com-view></app-single-com-view>-->
     <!--<app-first-component></app-first-component>-->
+    <!--<app-all-com-view></app-all-com-view>-->
   </div>
 
 

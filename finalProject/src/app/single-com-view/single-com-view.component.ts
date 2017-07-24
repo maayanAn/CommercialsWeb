@@ -7,17 +7,17 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './single-com-view.component.html',
   styleUrls: ['./single-com-view.component.css'],
   providers: [PostsService],
+  inputs: [`currentPost`],
 })
 export class SingleComViewComponent implements OnInit {
   public name;
   public template;
   public timeToShow;
   public location;
-  public videoURL;
   public textInputs;
   public imageInputs;
   public price;
-  currentPost: any;
+  public currentPost: any;
   constructor(private _postService: PostsService){}
 
   OnSaveChanges(value: any){
@@ -27,11 +27,10 @@ export class SingleComViewComponent implements OnInit {
     this.price = value.price
     this.imageInputs = value.imageInputs
     this.textInputs = value.textInputs
-    console.log(this.location);
   }
 
   ngOnInit() {
-    this.currentPost = this._postService.getAllPosts()[0]
+    // this.currentPost = this._postService.getAllPosts()[0]
     this.location = this.currentPost.location;
     this.template = this.currentPost.temp;
     this.timeToShow = this.currentPost.time_to_show;
@@ -42,5 +41,4 @@ export class SingleComViewComponent implements OnInit {
     this.location = this.currentPost.location;
     this.template = this.currentPost.temp;
   }
-
 }

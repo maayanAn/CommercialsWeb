@@ -1,0 +1,8 @@
+  <ul style="list-style-type:none">
+    <li *ngFor="let com of commercials; let index = index">
+      <div (click)="onClick($event)">
+        <app-single-com-view id="{{index}}" [currentPost] = com></app-single-com-view>
+        <hr>
+      </div>
+    </li>
+  </ul>
