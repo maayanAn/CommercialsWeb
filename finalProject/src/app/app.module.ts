@@ -12,6 +12,7 @@ import { AllComViewComponent } from './all-com-view/all-com-view.component';
 import {RouterModule} from '@angular/router';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { AddNewComComponent } from './add-new-com/add-new-com.component'
+import {PostsService } from './ServerCommunication/Communication-GetFirstPage'
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { AddNewComComponent } from './add-new-com/add-new-com.component'
       apiKey: 'AIzaSyCfdd-RBo1sIkw8mDjwUUmrCbrwoUcLq6U'
     })
   ],
-  providers: [],
+  providers: [PostsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

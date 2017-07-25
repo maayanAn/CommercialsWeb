@@ -7,7 +7,7 @@
       <div class="col-md-6 form-line">
         <div class="form-group">
           <label>Commercial Name</label>
-          <input type="text" class="form-control" name="name" [ngModel]="name"/>
+          <input type="text" class="form-control" name="name" [ngModel]="name" #postName/>
         </div>
         <div class="form-group">
           <label>Commercial Location</label>
@@ -33,7 +33,10 @@
           <label>Image Inputs</label>
           <input type="text" class="form-control"  name="imageInputs" [ngModel]="imageInputs">
         </div>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <div>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button (click)="onDeleteItem(postName.value)" class="btn btn-danger">Delete</button>
+        </div>
 
       </div>
       <div class="col-md-6">

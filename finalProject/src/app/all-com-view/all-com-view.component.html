@@ -1,7 +1,29 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div class="form-group row">
+  <div class="col-xs-2 col-md-offset-3">
+    <label for="ex1">Location</label>
+    <input class="form-control" id="ex1" type="text" #Location>
+  </div>
+  <div class="col-xs-2">
+    <label for="ex1">Price</label>
+    <input class="form-control" id="ex1" type="text" #Price>
+  </div>
+  <div class="col-xs-2">
+    <label for="ex1">Contain text</label>
+    <input class="form-control" id="ex1" type="text" #Text>
+  </div>
+  <div class="col-xs-2">
+    <button (click)="onFilter(Location.value,Price.value,Text.value)" type="submit" class="btn btn-primary form-control">Filter</button>
+  </div>
+
+</div>
+
   <ul style="list-style-type:none">
-    <li *ngFor="let com of commercials; let index = index">
-      <div (click)="onClick($event)">
-        <app-single-com-view id="{{index}}" [currentPost] = com></app-single-com-view>
+    <li *ngFor="let com of commercialsToDisplay; let index = index">
+      <div>
+        <app-single-com-view (notifyDelete)="deleteCommercial($event)" id="{{index}}" [currentPost] = com></app-single-com-view>
         <hr>
       </div>
     </li>

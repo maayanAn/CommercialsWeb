@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {WeatherService} from "./WeatherService/weather.service";
+import {PostsService } from './ServerCommunication/Communication-GetFirstPage'
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers:[WeatherService]
+  providers:[WeatherService, PostsService ]
 
 })
 export class AppComponent implements OnInit {

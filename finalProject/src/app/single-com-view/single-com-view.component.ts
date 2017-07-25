@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import {PostsService } from '../ServerCommunication/Communication-GetFirstPage';
 import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-single-com-view',
   templateUrl: './single-com-view.component.html',
   styleUrls: ['./single-com-view.component.css'],
-  providers: [PostsService],
+  providers: [],
   inputs: [`currentPost`],
+  outputs:['notifyDelete']
 })
 export class SingleComViewComponent implements OnInit {
+  notifyDelete: EventEmitter<string>=new EventEmitter<string>();
   public name;
   public template;
   public timeToShow;
@@ -18,7 +21,7 @@ export class SingleComViewComponent implements OnInit {
   public imageInputs;
   public price;
   public currentPost: any;
-  constructor(private _postService: PostsService){}
+  constructor(private _postService : PostsService){}
 
   OnSaveChanges(value: any){
     this.location = value.location;
@@ -28,9 +31,13 @@ export class SingleComViewComponent implements OnInit {
     this.imageInputs = value.imageInputs
     this.textInputs = value.textInputs
   }
+  onDeleteItem(name: string){
+    // this._postService.removePost(name);
+    console.log("delete");
+    this.notifyDelete.emit(this.name);
+  }
 
   ngOnInit() {
-    // this.currentPost = this._postService.getAllPosts()[0]
     this.location = this.currentPost.location;
     this.template = this.currentPost.temp;
     this.timeToShow = this.currentPost.time_to_show;
