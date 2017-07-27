@@ -13,6 +13,7 @@ import {RouterModule} from '@angular/router';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { AddNewComComponent } from './add-new-com/add-new-com.component'
 import {PostsService } from './ServerCommunication/Communication-GetFirstPage'
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {PostsService } from './ServerCommunication/Communication-GetFirstPage'
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path:'updateComs', component:AllComViewComponent},
       {path:'statistics', component:StatisticsComponent},
