@@ -1,0 +1,10 @@
+      {"name" : "Fifth message",
+        "textInputs" : ["This", "is", "the", "fifth", "message", "with", "7 lines"],
+        "imageInputs" : ["a.jpg", "b.jpg"],
+        "temp" : "B.html",
+        "time_to_show" : "5000",
+        "price": "500",
+        "location": "Russia",
+        "videoUrl": "www.youtube.com",
+        "recomendedSites": [{"name" : "www.google.com"},{"name" : "www.walla.co.il"}]
+      }

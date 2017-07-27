@@ -11,7 +11,8 @@ import { SingleComViewComponent } from './single-com-view/single-com-view.compon
 import { AllComViewComponent } from './all-com-view/all-com-view.component';
 import {RouterModule} from '@angular/router';
 import { StatisticsComponent } from './statistics/statistics.component';
-import { AddNewComComponent } from './add-new-com/add-new-com.component'
+import { AddNewComComponent } from './add-new-com/add-new-com.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AddNewComComponent } from './add-new-com/add-new-com.component'
     BrowserModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path:'updateComs', component:AllComViewComponent},
       {path:'statistics', component:StatisticsComponent},
