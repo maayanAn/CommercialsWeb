@@ -1,19 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import {PostsService} from "../ServerCommunication/Communication-GetFirstPage";
+import {MessagesService} from '../Messages.service';
+import {FormControl} from '@angular/forms'
 
 @Component({
+  moduleId: module.id,
   selector: 'app-all-com-view',
   templateUrl: './all-com-view.component.html',
   styleUrls: ['./all-com-view.component.css'],
-  providers: [],
+  providers: [MessagesService],
 })
 export class AllComViewComponent implements OnInit {
   originalCommercials:any[];
   commercialsToDisplay:any[];
-  constructor(private _postService: PostsService){}
+  connection;
+  messages;
+
+  constructor(private _postService: PostsService,
+              private MessagesService: MessagesService){}
 
   ngOnInit() {
     this.updateView();
+    // this.connection = this.MessagesService.getMessages().subscribe(message => {
+    //   this.messages = message;
+    //   this.commercialsToDisplay = this.messages;
+    // })
+  }
+  ngOnDestroy() {
+    // this.connection.unsubscribe();
   }
 
   updateView(){

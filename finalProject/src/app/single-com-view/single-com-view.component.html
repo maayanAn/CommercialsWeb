@@ -14,8 +14,8 @@
           <input type="text" class="form-control" name="location" [ngModel]="location">
         </div>
         <div class="form-group">
-          <label>Template</label>
-          <input type="text" class="form-control" name="template" [ngModel]="template">
+          <label>Background Color</label>
+          <input type="color" class="form-control" name="color" [ngModel]="color">
         </div>
         <div class="form-group">
           <label>Price</label>
@@ -32,16 +32,23 @@
         <div class="form-group">
           <label>Image Inputs</label>
           <input type="text" class="form-control"  name="imageInputs" [ngModel]="imageInputs">
+        </div>        
+         <div class="form-group">
+          <label>Vido URL</label>
+          <input type="text" class="form-control"  name="videoUrl" [ngModel]="videoUrl">
+        </div> 
+        <div class="form-group">
+          <label>Recomended Sites</label>
+          <input type="text" class="form-control"  name="recomendedSites" [ngModel]="recomendedSites">
         </div>
         <div>
           <button type="submit" class="btn btn-primary">Save changes</button>
           <button (click)="onDeleteItem(postName.value)" class="btn btn-danger">Delete</button>
         </div>
-
+        
       </div>
       <div class="col-md-6">
         <app-google-maps location={{location}}></app-google-maps>
-
       </div>
     </form>
   </div>

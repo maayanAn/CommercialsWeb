@@ -14,22 +14,26 @@ import { FormsModule } from '@angular/forms';
 export class SingleComViewComponent implements OnInit {
   notifyDelete: EventEmitter<string>=new EventEmitter<string>();
   public name;
-  public template;
+  public color;
   public timeToShow;
   public location;
   public textInputs;
   public imageInputs;
   public price;
+  public videoUrl;
+  public recomendedSites;
   public currentPost: any;
   constructor(private _postService : PostsService){}
 
   OnSaveChanges(value: any){
     this.location = value.location;
-    this.template = value.template
-    this.timeToShow = value.timeToShow
-    this.price = value.price
-    this.imageInputs = value.imageInputs
-    this.textInputs = value.textInputs
+    this.color = value.color;
+    this.timeToShow = value.timeToShow;
+    this.price = value.price;
+    this.imageInputs = value.imageInputs;
+    this.textInputs = value.textInputs;
+    this.videoUrl = value.videoUrl;
+    this.recomendedSites = value.recomendedSites;
   }
   onDeleteItem(name: string){
     // this._postService.removePost(name);
@@ -39,13 +43,13 @@ export class SingleComViewComponent implements OnInit {
 
   ngOnInit() {
     this.location = this.currentPost.location;
-    this.template = this.currentPost.temp;
+    this.color = this.currentPost.color;
     this.timeToShow = this.currentPost.time_to_show;
     this.textInputs = this.currentPost.textInputs;
     this.imageInputs = this.currentPost.imageInputs;
     this.price = this.currentPost.price;
     this.name = this.currentPost.name;
-    this.location = this.currentPost.location;
-    this.template = this.currentPost.temp;
+    this.videoUrl = this.currentPost.videoUrl;
+    this.recomendedSites = this.currentPost.recomendedSites;
   }
 }

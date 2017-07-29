@@ -14,7 +14,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { AddNewComComponent } from './add-new-com/add-new-com.component'
 import {PostsService } from './ServerCommunication/Communication-GetFirstPage'
 import {HttpClientModule} from '@angular/common/http';
-import {MessageComponent} from './message/message.component';
+// import {MessageComponent} from './message/message.component';
 import {SafePipe} from './SafePipe/SafePipe.component';
 
 @NgModule({
@@ -27,7 +27,7 @@ import {SafePipe} from './SafePipe/SafePipe.component';
     AllComViewComponent,
     StatisticsComponent,
     AddNewComComponent,
-    MessageComponent,
+    // MessageComponent,
     SafePipe,    
   ],
   imports: [

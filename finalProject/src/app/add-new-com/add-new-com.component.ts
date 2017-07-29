@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {PostsService } from '../ServerCommunication/Communication-GetFirstPage';
+import {MessagesService} from '../Messages.service';
+import {FormControl} from '@angular/forms';
 
 @Component({
+  moduleId: module.id,
   selector: 'app-add-new-com',
   templateUrl: './add-new-com.component.html',
   styleUrls: ['./add-new-com.component.css'],
-  providers:[]
+  providers:[MessagesService]
 })
 export class AddNewComComponent implements OnInit {
   public name: string;
@@ -17,9 +20,24 @@ export class AddNewComComponent implements OnInit {
   public price:string;
   public videoUrl:string;
   public recomendSites:string[];
-  constructor(private _postService: PostsService) { }
+  public messages = [];
+  public connection;
+  public message;
+
+  constructor(private _postService: PostsService,
+              private MessagesService: MessagesService) { }
 
   ngOnInit() {
+    // this.connection = this.MessagesService.getMessages().subscribe(message => {
+    //   this.messages.push(message);
+    // })
+  }
+
+  insertMessage(value: any){
+    this.message = this.MessagesService.convertToJson(value.name, value.textInputs, this.imageInputs,
+                                                      value.template, value.timeToShow, value.price, value.location);
+    this.MessagesService.insertMessage(this.message);
+    this.message = '';
   }
 
   AddCom(value: any){
@@ -36,6 +54,10 @@ export class AddNewComComponent implements OnInit {
                               this.color,this.timeToShow,this.price,this.location,
                               this.videoUrl,this.recomendSites);
 
+  }
+  
+  ngOnDestroy() {
+    // this.connection.unsubscribe();
   }
 
 }
