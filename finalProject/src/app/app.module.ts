@@ -14,6 +14,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { AddNewComComponent } from './add-new-com/add-new-com.component'
 import {PostsService } from './ServerCommunication/Communication-GetFirstPage'
 import {HttpClientModule} from '@angular/common/http';
+import {MessageComponent} from './message/message.component';
+import {SafePipe} from './SafePipe/SafePipe.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import {HttpClientModule} from '@angular/common/http';
     AllComViewComponent,
     StatisticsComponent,
     AddNewComComponent,
+    MessageComponent,
+    SafePipe,    
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,23 @@
-.canvas-about{
-  border:1px solid rgb(152,183,183);
-}
 .aside-about{
-  background-color:rgb(152,183,183);
-  word-wrap:break-word;
+     position: relative;
+     background-color:ivory; 
+    word-wrap:break-word;
+    margin-right: 0;
+    padding-right: 0;   
+}
+aside {
+  float: right;
+  width: 20%;
+   margin: 0 1.5% 24px 1.5%;
+    border-radius: 8px;
+}
+.photos {
+    display: inline-block;
+}
+.homePage h1, .homePage h3{
+    font-family: 'Lucida Sans Unicode';
+    color: black;
+}
+#price{
+     font-weight: bold;
 }

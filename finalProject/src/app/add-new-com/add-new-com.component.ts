@@ -9,12 +9,14 @@ import {PostsService } from '../ServerCommunication/Communication-GetFirstPage';
 })
 export class AddNewComComponent implements OnInit {
   public name: string;
-  public template: string;
+  public color: string;
   public timeToShow :string;
   public location:string;
   public textInputs:string[];
   public imageInputs:string[];
   public price:string;
+  public videoUrl:string;
+  public recomendSites:string[];
   constructor(private _postService: PostsService) { }
 
   ngOnInit() {
@@ -23,13 +25,16 @@ export class AddNewComComponent implements OnInit {
   AddCom(value: any){
     this.name = value.name;
     this.location = value.location;
-    this.template = value.template
-    this.timeToShow = value.timeToShow
-    this.price = value.price
-    this.imageInputs = value.imageInputs
-    this.textInputs = value.textInputs
+    this.color = value.color;
+    this.timeToShow = value.timeToShow;
+    this.price = value.price;
+    this.imageInputs = value.imageInputs;
+    this.textInputs = value.textInputs;
+    this.videoUrl = value.videoUrl;
+    this.recomendSites = value.recomendSites;
     this._postService.addPost(this.name, this.textInputs,this.imageInputs,
-                              this.template,this.timeToShow,this.price,this.location);
+                              this.color,this.timeToShow,this.price,this.location,
+                              this.videoUrl,this.recomendSites);
 
   }
 
