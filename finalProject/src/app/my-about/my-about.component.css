@@ -1,0 +1,15 @@
+.multyColumn{
+  -webkit-column-count: 3; /* Chrome, Safari, Opera */
+  -webkit-column-rule-style: solid; /* Chrome, Safari, Opera */
+  -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+  border: 2px solid;
+  border-radius: 25px;
+}
+.trasformer{
+  -webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* Safari */
+  transition: width 2s, height 2s, transform 2s;
+}
+.trasformer:hover{
+  -webkit-transform: rotate(180deg); /* Safari */
+  transform: rotate(180deg);
+}

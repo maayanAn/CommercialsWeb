@@ -16,6 +16,7 @@ import {PostsService } from './ServerCommunication/Communication-GetFirstPage'
 import {HttpClientModule} from '@angular/common/http';
 // import {MessageComponent} from './message/message.component';
 import {SafePipe} from './SafePipe/SafePipe.component';
+import { MyAboutComponent } from './my-about/my-about.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {SafePipe} from './SafePipe/SafePipe.component';
     StatisticsComponent,
     AddNewComComponent,
     // MessageComponent,
-    SafePipe,    
+    SafePipe,
+    MyAboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import {SafePipe} from './SafePipe/SafePipe.component';
       {path:'statistics', component:StatisticsComponent},
       {path:'home', component:HomeScreenComponent},
       {path:'addCom', component:AddNewComComponent},
+      {path:'about', component:MyAboutComponent},
       { path: '', redirectTo: '/home', pathMatch: 'full'}
     ]),
     AgmCoreModule.forRoot({
