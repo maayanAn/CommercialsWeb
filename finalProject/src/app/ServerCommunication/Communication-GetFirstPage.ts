@@ -4,6 +4,9 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PostsService {
+  constructor(private _http:Http){
+
+  }
   AllPosts = [{"name" : "First message",
     "textInputs" : ["This", "is", "the", "first"],
     "imageInputs" : ["a.jpg", "b.jpg"],
@@ -98,5 +101,10 @@ export class PostsService {
 
   removePost(name: string){
     this.AllPosts=this.AllPosts.filter(item=>item.name != name);
+  }
+
+  getVeideosIds(query) {
+    return this._http.get(`https://www.googleapis.com/youtube/v3/search?part=id&type=video&maxResults=1&q=` + query + '&key=AIzaSyARK43Ain6Zq4bzhagRgTxWxHoV0JSevtQ')
+      .map(res => res.json());
   }
 }

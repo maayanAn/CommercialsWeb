@@ -2,27 +2,31 @@
     <canvas #myCanvas width="500" height="55"></canvas>
     <canvas #myLineCanvas width="500" height="50"></canvas>
     <div>
-        <iframe width="400" height="315" [src]="videoUrl | safe" frameborder="0" allowfullscreen></iframe>             
-    </div> <br />    
-    <div class="links" *ngFor="let link of recomendedSites; let index = index">      
-        <a href={{link}}>Link #{{index + 1}}</a><br />          
-    </div><br/>    
+        <iframe width="400" height="315" [src]="videoUrl | safe" frameborder="0" allowfullscreen></iframe>
+    </div> <br />
+    <div class="links" *ngFor="let link of recomendedSites; let index = index">
+        <a href={{link}}>Link #{{index + 1}}</a><br />
+    </div><br/>
 </aside>
 
 <div class="homePage" [style.background-color]="color">
-    <h1>{{name}}</h1> <br />  
+    <h1>{{name}}</h1> <br />
   <div class="addDiscription" *ngFor="let line of textInputs" >
     <p>{{line}}</p>
   </div>
   <h3 id="price">for {{price}}$</h3>
   <h3>some pics:</h3>
-  <div class="photos" *ngFor="let pic of imageInputs"> 
+  <div class="photos" *ngFor="let pic of imageInputs">
       <img src={{pic}} alt="pic2" style="width:304px;height:228px;">
-  </div><br />    
-  <div class="googleMaps">    
+  </div><br />
+  <div class="googleMaps">
       <app-google-maps location={{location}}></app-google-maps>
+  </div>
+  <div>
+    <button (click)="loadYouTubeVideo()">Show Youtube Video</button>
+    <iframe width="560" height="315" [src]="url" [style.display]="showVideo? 'inline': 'none'" frameborder="0" allowfullscreen></iframe>
   </div>
 </div>
 
 
-  
+
