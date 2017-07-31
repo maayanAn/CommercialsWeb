@@ -27,7 +27,7 @@ export class AllComViewComponent implements OnInit {
     })
   }
   ngOnDestroy() {
-    // this.connection.unsubscribe();
+    this.connection.unsubscribe();
   }
 
   updateView(){
@@ -42,6 +42,7 @@ export class AllComViewComponent implements OnInit {
   }
 
   deleteCommercial(value){
+    // this.MessagesService.deleteMessage(this.commercialsToDisplay.find(value)._id);
     console.log(value);
     this._postService.removePost(value);
     this.updateView();
