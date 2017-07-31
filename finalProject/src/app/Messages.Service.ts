@@ -34,18 +34,19 @@ export class MessagesService {
   }
 
   convertToJson(name: string, texts: string[], images: string[],
-                temp: string , timeToShow: string, price: string, location: string){
+                color: string , timeToShow: string, price: string, 
+                location: string, videoUrl:string, recomendedSites:string[]){
     let jsonObject = {
       'id': 0,
       'name': name,
       'textInputs': texts,
       'imageInputs': images,
-      'temp': temp,
+      'color': color,
       'time_to_show': timeToShow,
       'price': price,
       'location': location,
-      'videoUrl': '',
-      'recomendedSites': []
+      'videoUrl': videoUrl,
+      'recomendedSites': recomendedSites
     }
     return jsonObject;
   }

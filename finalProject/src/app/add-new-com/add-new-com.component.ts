@@ -28,14 +28,15 @@ export class AddNewComComponent implements OnInit {
               private MessagesService: MessagesService) { }
 
   ngOnInit() {
-    // this.connection = this.MessagesService.getMessages().subscribe(message => {
-    //   this.messages.push(message);
-    // })
+    this.connection = this.MessagesService.getMessages().subscribe(message => {
+      this.messages.push(message);
+    })
   }
 
   insertMessage(value: any){
-    this.message = this.MessagesService.convertToJson(value.name, value.textInputs, this.imageInputs,
-                                                      value.template, value.timeToShow, value.price, value.location);
+    this.message = this.MessagesService.convertToJson(value.name, value.textInputs, value.imageInputs,
+                                                      value.color, value.timeToShow, value.price, 
+                                                      value.location, value.videoUrl, value.recomendSites);
     this.MessagesService.insertMessage(this.message);
     this.message = '';
   }
@@ -50,14 +51,14 @@ export class AddNewComComponent implements OnInit {
     this.textInputs = value.textInputs;
     this.videoUrl = value.videoUrl;
     this.recomendSites = value.recomendSites;
-    this._postService.addPost(this.name, this.textInputs,this.imageInputs,
-                              this.color,this.timeToShow,this.price,this.location,
-                              this.videoUrl,this.recomendSites);
-
+    //this._postService.addPost(this.name, this.textInputs,this.imageInputs,
+                              // this.color,this.timeToShow,this.price,this.location,
+                              // this.videoUrl,this.recomendSites);
+    this.insertMessage(value);
   }
   
   ngOnDestroy() {
-    // this.connection.unsubscribe();
+    this.connection.unsubscribe();
   }
 
 }

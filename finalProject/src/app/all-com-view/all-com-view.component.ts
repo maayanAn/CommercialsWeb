@@ -20,11 +20,11 @@ export class AllComViewComponent implements OnInit {
               private MessagesService: MessagesService){}
 
   ngOnInit() {
-    this.updateView();
-    // this.connection = this.MessagesService.getMessages().subscribe(message => {
-    //   this.messages = message;
-    //   this.commercialsToDisplay = this.messages;
-    // })
+    //this.updateView();
+    this.connection = this.MessagesService.getMessages().subscribe(message => {
+      this.messages = message;
+      this.commercialsToDisplay = this.messages;
+    })
   }
   ngOnDestroy() {
     // this.connection.unsubscribe();
