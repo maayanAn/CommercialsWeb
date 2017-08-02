@@ -1,21 +1,24 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 import {PostsService } from '../ServerCommunication/Communication-GetFirstPage';
 import { Http } from '@angular/http';
 import { HttpClient } from "@angular/common/http";
 import {Observable} from 'rxjs/Rx';
 import {DomSanitizer} from '@angular/platform-browser';
+import {MessagesService} from '../Messages.service';
 
 
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
   styleUrls: ['./home-screen.component.css'],
-  providers: [PostsService]
+  providers: [PostsService, MessagesService],
+  inputs: [`allPost`]
 })
 
-export class HomeScreenComponent implements OnInit{
+export class HomeScreenComponent implements OnInit, OnDestroy{
   @ViewChild('myCanvas') canvasRef: ElementRef;
   @ViewChild('myLineCanvas') canvasLineRef: ElementRef;
+  public id:any;
   public name: any;
   public color: any;
   public timeToShow: any;
@@ -26,6 +29,7 @@ export class HomeScreenComponent implements OnInit{
   public currentPost: any;
   public videoUrl: any;
   public recomendedSites: any;
+  allPost: any;
 
   video: any = {id: 'Jfg39EWmQkw'};
   baseUrl: string = 'https://www.youtube.com/embed/';
@@ -33,37 +37,24 @@ export class HomeScreenComponent implements OnInit{
   data: any;
   url: any;
   showVideo: boolean;
-
+  conn;
+  messages:any;
+  commercialsToDisplay;
   pic: any;
+  index = 0;
   //commercials;
 
    results: string[];
 
   constructor(private _postService: PostsService,
               private http: HttpClient,
-              private sanitizer: DomSanitizer){}
+              private sanitizer: DomSanitizer,
+              private MessagesService: MessagesService){
+                 this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + "cWe5tbMo2lU");
+              }
 
   ngOnInit() {
     // temp
-    //this.commercials = this._postService.getAllPosts()[0];
-    this.location = "Israel";
-    this.color = "AntiqueWhite";
-    this.timeToShow = "5000";
-    this.textInputs = ["Preheat oven to 350 degrees F (175 degrees C). Grease and flour a 9x13 inch pan.",
-                      "In a large bowl, beat together eggs, oil, white sugar and 2 teaspoons vanilla. Mix in flour, baking soda, baking powder, salt and cinnamon. Stir in carrots. Fold in pecans. Pour into prepared pan.",
-                    "Bake in the preheated oven for 40 to 50 minutes, or until a toothpick inserted into the center of the cake comes out clean. Let cool in pan for 10 minutes, then turn out onto a wire rack and cool completely.",
-                  "To Make Frosting: In a medium bowl, combine butter, cream cheese, confectioners' sugar and 1 teaspoon vanilla. Beat until the mixture is smooth and creamy. Stir in chopped pecans. Frost the cooled cake."];
-    this.imageInputs = ["http://img.taste.com.au/pHO4QueR/w643-h428-cfill/taste/2016/11/chocolate-celebration-cake-85607-1.jpeg",
-                      "https://www.puregelato.com.au/images/cake/Choc-Drip-Gelato-Cake.jpg"];
-    this.price = "250";
-    this.name = "COOKING ADD";
-    this.videoUrl = "https://www.youtube.com/embed/23qMd90xcaY";
-    this.recomendedSites = ["http://www.bbc.co.uk/food/recipes", "http://www.mako.co.il/food-recipes/"];
-    this.showVideo = false;
-    this._postService.getVeideosIds(this.name).subscribe(
-      (data) => this.data = data,
-      (err) => this.error = err);
-
     // Ajax call from server
     // this.http.get<ItemsResponse>('/data.json', {observe: 'response'}).subscribe(data => {
     // // Read the result field from the JSON response.
@@ -77,16 +68,87 @@ export class HomeScreenComponent implements OnInit{
     // });
 
 
-     //setInterval(() => { this.testInterval(); }, this.timeToShow);
-     //setInterval(() => { this.ngOnInit(); }, this.timeToShow);
+    //  setInterval(() => { this.testInterval(); }, this.timeToShow);
+    //  setInterval(() => { this.ngOnInit(); }, this.timeToShow);
 
-    Observable.interval(this.timeToShow).subscribe(x => {
-      this.testInterval();
-    });
+    // Observable.interval(this.timeToShow).subscribe(x => {
+    //   this.testInterval();
+    // });
+
+    // get all messages form server
+    this.conn = this.MessagesService.getMessages().subscribe(message => {
+      this.messages = message;   
+      console.log(this.messages[0]);
+      this.setHomePage();
+
+      // go over all messages
+      // for(var i = 1; i <= this.messages.length; i++){
+    //   for (let message of this.messages) {
+    //      console.log(message);
+    //     // setInterval(() => {          
+    //     //   this.setHomePage(message); 
+    //     // },10000);          
+    //     Observable.interval(5000).subscribe(x => {
+    //   this.setHomePage(message);
+    // });
+    //   }
+
+
+
+    // Observable.interval(5000).subscribe(x => {
+    //   this.setHomePage(this.messages[1]);
+    //   Observable.interval(5000).subscribe(x => {
+    //       this.setHomePage(this.messages[2]);
+    //       Observable.interval(5000).subscribe(x => {
+    //           this.setHomePage(this.messages[3]);
+    //           Observable.interval(5000).subscribe(x => {
+    //             this.setHomePage(this.messages[4]);
+    //           });
+    //       });
+    //   });    
+    // });
+
+   
+      this.authenticate_loop();
+    
+    })
 
     this.canvasHeader();
     this.canvasLine();
   }
+
+  private authenticate_loop() {
+   
+      setInterval (() => {
+        console.log("Hello from setInterval");
+        this.setHomePage();
+      }, 5000)
+    
+  }
+
+  setHomePage(){
+    
+     this.allPost = this.messages[this.index];
+      this.id = this.allPost._id;
+      this.location = this.allPost.location;
+      this.color = this.allPost.color;
+      this.timeToShow = this.allPost.time_to_show;
+      this.textInputs = this.allPost.textInputs;
+      this.imageInputs = this.allPost.imageInputs;
+      this.price = this.allPost.price;
+      this.name = this.allPost.name;
+      this.videoUrl = this.allPost.videoUrl;
+      this.recomendedSites = this.allPost.recomendedSites;
+      if (this.index < this.messages.length - 1)
+        this.index++; 
+      else
+        this.index = 0;
+  }
+
+    ngOnDestroy() {
+    // this.conn.unsubscribe();
+  }
+  
   canvasLine = function(){
       // canvas line
      let c : CanvasRenderingContext2D =

@@ -2,7 +2,7 @@
     <canvas #myCanvas width="500" height="55"></canvas>
     <canvas #myLineCanvas width="500" height="50"></canvas>
     <div>
-        <iframe width="400" height="315" [src]="videoUrl | safe" frameborder="0" allowfullscreen></iframe>
+         <iframe width="400" height="315" [src]="videoUrl | safe" frameborder="0" allowfullscreen></iframe>        
     </div> <br />
     <div class="links" *ngFor="let link of recomendedSites; let index = index">
         <a href={{link}}>Link #{{index + 1}}</a><br />

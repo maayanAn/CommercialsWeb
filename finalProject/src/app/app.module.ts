@@ -38,9 +38,9 @@ import {SafePipe} from './SafePipe/SafePipe.component';
     RouterModule.forRoot([
       {path:'updateComs', component:AllComViewComponent},
       {path:'statistics', component:StatisticsComponent},
-      {path:'home', component:HomeScreenComponent},
-      {path:'addCom', component:AddNewComComponent},
-      { path: '', redirectTo: '/home', pathMatch: 'full'}
+      {path:'home', component:HomeScreenComponent, children:[{path: '', component:HomeScreenComponent}]},
+      {path:'addCom', component:AddNewComComponent}
+      // { path: '', redirectTo: '/home', pathMatch: 'full'}
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCfdd-RBo1sIkw8mDjwUUmrCbrwoUcLq6U'

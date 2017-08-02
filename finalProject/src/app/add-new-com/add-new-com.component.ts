@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer, ElementRef } from '@angular/core';
 import {PostsService } from '../ServerCommunication/Communication-GetFirstPage';
 import {MessagesService} from '../Messages.service';
-import {FormControl} from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   moduleId: module.id,
@@ -11,8 +11,9 @@ import {FormControl} from '@angular/forms';
   providers:[MessagesService]
 })
 export class AddNewComComponent implements OnInit {
+
   public name: string;
-  public color: string;
+  public color: string; 
   public timeToShow :string;
   public location:string;
   public textInputs:string[];
@@ -25,12 +26,19 @@ export class AddNewComComponent implements OnInit {
   public message;
 
   constructor(private _postService: PostsService,
-              private MessagesService: MessagesService) { }
+              private MessagesService: MessagesService,
+            elementRef: ElementRef, renderer: Renderer) {
+                renderer.listen(elementRef.nativeElement, 'click', (event) => {
+                  this.color = event.value;
+                  console.log(event);
+                  console.log(this.color);
+    })
+               }
 
   ngOnInit() {
     this.connection = this.MessagesService.getMessages().subscribe(message => {
       this.messages.push(message);
-    })
+    })    
   }
 
   insertMessage(value: any){
@@ -61,4 +69,7 @@ export class AddNewComComponent implements OnInit {
     this.connection.unsubscribe();
   }
 
+    test(){
+    console.log(this.color);
+}
 }
