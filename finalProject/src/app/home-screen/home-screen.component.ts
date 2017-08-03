@@ -77,7 +77,7 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
 
     // get all messages form server
     this.conn = this.MessagesService.getMessages().subscribe(message => {
-      this.messages = message;   
+      this.messages = message;
       console.log(this.messages[0]);
       this.setHomePage();
 
@@ -85,9 +85,9 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
       // for(var i = 1; i <= this.messages.length; i++){
     //   for (let message of this.messages) {
     //      console.log(message);
-    //     // setInterval(() => {          
-    //     //   this.setHomePage(message); 
-    //     // },10000);          
+    //     // setInterval(() => {
+    //     //   this.setHomePage(message);
+    //     // },10000);
     //     Observable.interval(5000).subscribe(x => {
     //   this.setHomePage(message);
     // });
@@ -105,12 +105,12 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
     //             this.setHomePage(this.messages[4]);
     //           });
     //       });
-    //   });    
+    //   });
     // });
 
-   
+
       this.authenticate_loop();
-    
+
     })
 
     this.canvasHeader();
@@ -118,16 +118,16 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
   }
 
   private authenticate_loop() {
-   
+
       setInterval (() => {
         console.log("Hello from setInterval");
         this.setHomePage();
       }, 5000)
-    
+
   }
 
   setHomePage(){
-    
+
      this.allPost = this.messages[this.index];
       this.id = this.allPost._id;
       this.location = this.allPost.location;
@@ -140,7 +140,7 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
       this.videoUrl = this.allPost.videoUrl;
       this.recomendedSites = this.allPost.recomendedSites;
       if (this.index < this.messages.length - 1)
-        this.index++; 
+        this.index++;
       else
         this.index = 0;
   }
@@ -148,7 +148,7 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
     ngOnDestroy() {
     // this.conn.unsubscribe();
   }
-  
+
   canvasLine = function(){
       // canvas line
      let c : CanvasRenderingContext2D =
@@ -204,16 +204,20 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
     return { 'background-color': this.color };
 }
 
+
   loadYouTubeVideo() {
     this._postService.getVeideosIds(this.name).subscribe(
-      (data) => this.data = data,
+      (data) => this.onVideoArrives(data),
       (err) => this.error = err);
-    console.log(this.data);
-    if (this.data) {
-      console.log(this.data.items[0].id.videoId);
+  }
+  onVideoArrives(localData){
+    if(localData) {
+      this.data = localData;
+      console.log('1');
+      console.log(this.data);
       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + this.data.items[0].id.videoId);
+      this.showVideo = true;
     }
-    this.showVideo = true;
   }
 }
 interface ItemsResponse {

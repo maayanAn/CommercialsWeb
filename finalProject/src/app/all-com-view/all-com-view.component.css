@@ -8,6 +8,10 @@ hr {
   border-width: 1px;
 }
 
-.textShadowClass{
+.blueTextShadowClass{
   text-shadow: 2px 2px 8px #09fffd;
+}
+
+.redTextShadowClass{
+  text-shadow: 2px 2px 8px #ff4328;
 }

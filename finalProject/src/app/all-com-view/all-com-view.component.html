@@ -3,7 +3,7 @@
 
 <div class="form-group row">
   <div class="col-xs-2 col-md-offset-2">
-     <label class="textShadowClass">filter according to: </label>
+     <label class="blueTextShadowClass">filter according to: </label>
      <button (click)="onFilter(Location.value,Price.value,Text.value)" type="submit" class="btn btn-primary form-control">Filter</button>
   </div>
   <div class="col-xs-2">
@@ -18,9 +18,25 @@
     <label for="ex1">Contains text</label>
     <input class="form-control" id="ex1" type="text" #Text>
   </div>
-
-
 </div>
+
+<div class="form-group row">
+  <div class="col-xs-2 col-md-offset-2">
+    <label class="redTextShadowClass">filter according to: </label>
+    <button (click)="onFilter2(Name.value,TTS.value,URL.value)" type="submit" class="btn btn-primary form-control">Filter</button>
+  </div>
+  <div class="col-xs-2">
+    <label for="ex1">Name</label>
+    <input class="form-control" id="ex2" type="text" #Name>
+  </div>
+  <div class="col-xs-2">
+    <label for="ex1">Time To Show</label>
+    <input class="form-control" id="ex2" type="text" #TTS>
+  </div>
+  <div class="col-xs-2">
+    <label for="ex1">Recomended Sites</label>
+    <input class="form-control" id="ex2" type="text" #URL>
+  </div>
 
   <ul style="list-style-type:none">
     <li *ngFor="let com of commercialsToDisplay; let index = index">
@@ -31,4 +47,4 @@
       </div>
     </li>
   </ul>
- 
+

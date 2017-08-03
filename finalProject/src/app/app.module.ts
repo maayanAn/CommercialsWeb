@@ -17,6 +17,8 @@ import {HttpClientModule} from '@angular/common/http';
 // import {MessageComponent} from './message/message.component';
 import {SafePipe} from './SafePipe/SafePipe.component';
 import { MyAboutComponent } from './my-about/my-about.component';
+import { MyAsideSearchComponent } from './my-aside-search/my-aside-search.component';
+import { MySearchPageComponent } from './my-search-page/my-search-page.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { MyAboutComponent } from './my-about/my-about.component';
     // MessageComponent,
     SafePipe,
     MyAboutComponent,
+    MyAsideSearchComponent,
+    MySearchPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +46,9 @@ import { MyAboutComponent } from './my-about/my-about.component';
       {path:'statistics', component:StatisticsComponent},
       {path:'home', component:HomeScreenComponent},
       {path:'addCom', component:AddNewComComponent},
+      {path:'search', component:MySearchPageComponent},
       {path:'about', component:MyAboutComponent},
-      { path: '', redirectTo: '/home', pathMatch: 'full'}
+      {path: '', redirectTo: '/home', pathMatch: 'full'}
     ]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCfdd-RBo1sIkw8mDjwUUmrCbrwoUcLq6U'

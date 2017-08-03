@@ -21,9 +21,10 @@ export class AllComViewComponent implements OnInit, OnDestroy {
               private MessagesService: MessagesService){}
 
   ngOnInit() {
-    //this.updateView();
+    this.updateView();
     this.connection = this.MessagesService.getMessages().subscribe(message => {
       this.messages = message;
+      this.originalCommercials = this.messages;
       this.commercialsToDisplay = this.messages;
     })
   }
@@ -31,16 +32,16 @@ export class AllComViewComponent implements OnInit, OnDestroy {
     this.connection.unsubscribe();
   }
 
-  // updateView(){
-  //   this.originalCommercials = this._postService.getAllPosts();
-  //   console.log(this.originalCommercials);
-  //   this.commercialsToDisplay = [];
-  //   for (let com of this.originalCommercials) {
-  //     this.commercialsToDisplay.push(com);
-  //   }
+  updateView(){
+    this.originalCommercials = this._postService.getAllPosts();
+    console.log(this.originalCommercials);
+    this.commercialsToDisplay = [];
+    for (let com of this.originalCommercials) {
+      this.commercialsToDisplay.push(com);
+    }
 
-  //   console.log("view updated");
-  // }
+    console.log("view updated");
+  }
 
   deleteCommercial(value){
     var messageId = (this.commercialsToDisplay.find(x => x.name == value))._id;
@@ -63,6 +64,7 @@ export class AllComViewComponent implements OnInit, OnDestroy {
   onFilter(location,price,texts){
     console.log(location);
     console.log(price);
+    console.log(this.originalCommercials);
     let filteredComs =[];
     for (let com of this.originalCommercials) {
       let isOk = true;
@@ -74,6 +76,29 @@ export class AllComViewComponent implements OnInit, OnDestroy {
       }
 
       if(texts != "" && !com.textInputs.includes(texts)){
+        isOk = false;
+      }
+      if (isOk)
+        filteredComs.push(com);
+    }
+    this.commercialsToDisplay =[];
+    for (let filterCom of filteredComs) {
+      this.commercialsToDisplay.push(filterCom);
+    }
+  }
+
+  onFilter2(name,tts,url){
+    let filteredComs =[];
+    for (let com of this.originalCommercials) {
+      let isOk = true;
+      if(name != "" && com.name != name){
+        isOk = false;
+      }
+      if(tts != "" && com.time_to_show != tts){
+        isOk = false;
+      }
+
+      if(url != "" && !com.recomendedSites.includes(url)){
         isOk = false;
       }
       if (isOk)

@@ -104,7 +104,14 @@ export class PostsService {
   }
 
   getVeideosIds(query) {
-    return this._http.get(`https://www.googleapis.com/youtube/v3/search?part=id&type=video&maxResults=1&q=` + query + '&key=AIzaSyARK43Ain6Zq4bzhagRgTxWxHoV0JSevtQ')
+    console.log(query)
+    return this._http.get(`https://www.googleapis.com/youtube/v3/search?part=id&type=video&maxResults=1&q=` + query + '&key=AIzaSyBWWVI_8EP6D0cNOkqwxtVKj6muVhxkhbk')
+      .map(res => res.json());
+  }
+
+  get5VeideosIds(query) {
+    console.log(query)
+    return this._http.get(`https://www.googleapis.com/youtube/v3/search?part=id&type=video&maxResults=5&q=` + query + '&key=AIzaSyBWWVI_8EP6D0cNOkqwxtVKj6muVhxkhbk')
       .map(res => res.json());
   }
 }
