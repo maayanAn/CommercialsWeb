@@ -10,42 +10,51 @@ import {FormControl} from '@angular/forms'
   styleUrls: ['./all-com-view.component.css'],
   providers: [MessagesService],
 })
-export class AllComViewComponent implements OnInit {
+export class AllComViewComponent implements OnInit, OnDestroy {
   originalCommercials:any[];
   commercialsToDisplay:any[];
   connection;
   messages;
+  messageToUpdate;
 
   constructor(private _postService: PostsService,
               private MessagesService: MessagesService){}
 
   ngOnInit() {
-    this.updateView();
-    // this.connection = this.MessagesService.getMessages().subscribe(message => {
-    //   this.messages = message;
-    //   this.commercialsToDisplay = this.messages;
-    // })
+    //this.updateView();
+    this.connection = this.MessagesService.getMessages().subscribe(message => {
+      this.messages = message;
+      this.commercialsToDisplay = this.messages;
+    })
   }
   ngOnDestroy() {
-    // this.connection.unsubscribe();
+    this.connection.unsubscribe();
   }
 
-  updateView(){
-    this.originalCommercials = this._postService.getAllPosts();
-    console.log(this.originalCommercials);
-    this.commercialsToDisplay = [];
-    for (let com of this.originalCommercials) {
-      this.commercialsToDisplay.push(com);
-    }
+  // updateView(){
+  //   this.originalCommercials = this._postService.getAllPosts();
+  //   console.log(this.originalCommercials);
+  //   this.commercialsToDisplay = [];
+  //   for (let com of this.originalCommercials) {
+  //     this.commercialsToDisplay.push(com);
+  //   }
 
-    console.log("view updated");
-  }
+  //   console.log("view updated");
+  // }
 
   deleteCommercial(value){
+    var messageId = (this.commercialsToDisplay.find(x => x.name == value))._id;
+    this.MessagesService.deleteMessage(messageId);
     console.log(value);
-    this._postService.removePost(value);
-    this.updateView();
+    //this._postService.removePost(value);
+    //this.updateView();
+  }
 
+  updateMessage(value){
+    // this.messageToUpdate = this.MessagesService.convertToJson(value.name, value.textInputs, value.imageInputs,
+    //                                                   value.color, value.timeToShow, value.price, value.location, value.videoUrl, value.recomendSites);
+    this.MessagesService.updateMessage( value);
+    this.ngOnInit();
   }
   onClick(value){
     this.commercialsToDisplay=[];

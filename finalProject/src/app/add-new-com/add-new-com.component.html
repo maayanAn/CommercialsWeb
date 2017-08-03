@@ -15,7 +15,9 @@
       </div>
       <div class="form-group">
         <label>Background Color</label>        
-         <input type="color" class="form-control" name="color" [ngModel]="color"> 
+           <input type="color" class="form-control" name="color" [ngModel]="color">   
+          <input id="colorInput" type="text" color="color" (change)="test()" /> 
+           <!-- <div class="hi" [style.background-color]="color"> </div>  -->
       </div>
       <div class="form-group">
         <label>Price</label>
@@ -35,7 +37,7 @@
       </div>
       <div class="form-group">
         <label>Vido URL</label>
-        <input type="text" class="form-control"  name="vidoUrl" [ngModel]="vidoUrl">
+        <input type="text" class="form-control"  name="videoUrl" [ngModel]="videoUrl">
       </div>
       <div class="form-group">
         <label>Recomended Sites</label>

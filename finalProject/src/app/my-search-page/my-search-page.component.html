@@ -1,0 +1,16 @@
+<h2>
+  search for commercial Ideas
+</h2>
+<div>
+  <input type="text" #searchQuery value="Funny Commercials">
+  <button type="button" class="btn btn-primary" (click)="onSearchClick(searchQuery.value)">Primary</button>
+</div>
+<br>
+<div>
+<iframe width="560" height="315" [src]="vid1Url" [style.display]="showVideo? 'inline': 'none'" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" [src]="vid2Url" [style.display]="showVideo? 'inline': 'none'" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" [src]="vid3Url" [style.display]="showVideo? 'inline': 'none'" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" [src]="vid4Url" [style.display]="showVideo? 'inline': 'none'" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" [src]="vid5Url" [style.display]="showVideo? 'inline': 'none'" frameborder="0" allowfullscreen></iframe>
+</div>
+

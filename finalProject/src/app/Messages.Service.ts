@@ -7,7 +7,11 @@ export class MessagesService {
   private url = 'http://localhost:8080';
   private socket;
 
-  updateMessage(message){
+  updateMessage( message){
+    // var newMessage={  
+    // messageId : id,  
+    // upMessage : message  
+    // };
     this.socket.emit('update-message', message);
   }
 
@@ -34,18 +38,19 @@ export class MessagesService {
   }
 
   convertToJson(name: string, texts: string[], images: string[],
-                temp: string , timeToShow: string, price: string, location: string){
+                color: string , timeToShow: string, price: string, 
+                location: string, videoUrl:string, recomendedSites:string[], id:string = ""){
     let jsonObject = {
-      'id': 0,
+      'id': id,
       'name': name,
       'textInputs': texts,
       'imageInputs': images,
-      'temp': temp,
+      'color': color,
       'time_to_show': timeToShow,
       'price': price,
       'location': location,
-      'videoUrl': '',
-      'recomendedSites': []
+      'videoUrl': videoUrl,
+      'recomendedSites': recomendedSites
     }
     return jsonObject;
   }
