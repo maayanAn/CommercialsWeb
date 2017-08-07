@@ -16,7 +16,8 @@ export class SingleComViewComponent implements OnInit {
   notifyDelete: EventEmitter<string>=new EventEmitter<string>();
   notifyUpdate: EventEmitter<string>=new EventEmitter<string>();
   public name;
-  public color;
+  // public color;
+  private _color: string = '#000';
   public timeToShow;
   public location;
   public textInputs;
@@ -28,12 +29,19 @@ export class SingleComViewComponent implements OnInit {
   public currentPost: any;
   public messageToUpdate;
   
+  set color (value:string){
+    this._color = value;
+  }
+
+  get color():string{
+    return this._color;
+  }
 
   constructor(private _postService : PostsService,  private MessagesService: MessagesService){}
 
   OnSaveChanges(value: any){
     this.location = value.location;
-    this.color = value.color;
+    //this.color = value.color;
     this.timeToShow = value.timeToShow;
     this.price = value.price;
     this.imageInputs = value.imageInputs;
@@ -41,9 +49,9 @@ export class SingleComViewComponent implements OnInit {
     this.videoUrl = value.videoUrl;
     this.recomendedSites = value.recomendedSites;
 
-    this.messageToUpdate = this.MessagesService.convertToJson(value.name, value.textInputs, value.imageInputs,
-                                                      value.color, value.timeToShow, value.price, value.location,
-                                                      value.videoUrl, value.recomendSites, this.id);
+    this.messageToUpdate = this.MessagesService.convertToJson(this.name, this.textInputs, this.imageInputs,
+                                                      this.color, this.timeToShow, this.price, this.location,
+                                                      this.videoUrl, this.recomendedSites, this.id);
     this.notifyUpdate.emit(this.messageToUpdate);      
   }
   onDeleteItem(name: string){
@@ -63,5 +71,5 @@ export class SingleComViewComponent implements OnInit {
     this.name = this.currentPost.name;
     this.videoUrl = this.currentPost.videoUrl;
     this.recomendedSites = this.currentPost.recomendedSites;
-  }  
+  }
 }

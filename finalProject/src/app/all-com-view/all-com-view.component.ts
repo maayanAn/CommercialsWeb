@@ -21,7 +21,7 @@ export class AllComViewComponent implements OnInit, OnDestroy {
               private MessagesService: MessagesService){}
 
   ngOnInit() {
-    this.updateView();
+    // this.updateView();
     this.connection = this.MessagesService.getMessages().subscribe(message => {
       this.messages = message;
       this.originalCommercials = this.messages;
@@ -55,7 +55,7 @@ export class AllComViewComponent implements OnInit, OnDestroy {
     // this.messageToUpdate = this.MessagesService.convertToJson(value.name, value.textInputs, value.imageInputs,
     //                                                   value.color, value.timeToShow, value.price, value.location, value.videoUrl, value.recomendSites);
     this.MessagesService.updateMessage( value);
-    this.ngOnInit();
+    //this.ngOnInit();
   }
   onClick(value){
     this.commercialsToDisplay=[];
