@@ -15,6 +15,7 @@ import { AddNewComComponent } from './add-new-com/add-new-com.component'
 import {PostsService } from './ServerCommunication/Communication-GetFirstPage'
 import {HttpClientModule} from '@angular/common/http';
 // import {MessageComponent} from './message/message.component';
+import {GroupPriceComponent} from './groupPrice/groupPrice.component'
 import {SafePipe} from './SafePipe/SafePipe.component';
 import { MyAboutComponent } from './my-about/my-about.component';
 import { MyAsideSearchComponent } from './my-aside-search/my-aside-search.component';
@@ -31,6 +32,7 @@ import { MySearchPageComponent } from './my-search-page/my-search-page.component
     StatisticsComponent,
     AddNewComComponent,
     // MessageComponent,
+    GroupPriceComponent,
     SafePipe,
     MyAboutComponent,
     MyAsideSearchComponent,
@@ -47,6 +49,7 @@ import { MySearchPageComponent } from './my-search-page/my-search-page.component
       {path:'statistics', component:StatisticsComponent},
       {path:'home', component:HomeScreenComponent},
       {path:'addCom', component:AddNewComComponent},
+      {path: 'groupCom', component:GroupPriceComponent},
       {path:'search', component:MySearchPageComponent},
       {path:'about', component:MyAboutComponent},
       {path: '', redirectTo: '/home', pathMatch: 'full'}

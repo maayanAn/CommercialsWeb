@@ -40,6 +40,7 @@ export class SingleComViewComponent implements OnInit {
   constructor(private _postService : PostsService,  private MessagesService: MessagesService){}
 
   OnSaveChanges(value: any){
+    this.name = value.name;
     this.location = value.location;
     //this.color = value.color;
     this.timeToShow = value.timeToShow;

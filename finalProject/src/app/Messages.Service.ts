@@ -37,11 +37,25 @@ export class MessagesService {
     return observable;
   }
 
+  getGroupMessages() {
+
+    let observable = new Observable(observer => {
+      this.socket = io(this.url);
+      this.socket.on('group-messages', (data) => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.disconnect();
+      };
+    })
+    return observable;
+  }
+
   convertToJson(name: string, texts: string[], images: string[],
                 color: string , timeToShow: string, price: string, 
                 location: string, videoUrl:string, recomendedSites:string[], id:string = ""){
     let jsonObject = {
-      'id': id,
+      '_id': id,
       'name': name,
       'textInputs': texts,
       'imageInputs': images,

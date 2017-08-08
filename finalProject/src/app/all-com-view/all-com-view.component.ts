@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import {PostsService} from "../ServerCommunication/Communication-GetFirstPage";
 import {MessagesService} from '../Messages.service';
-import {FormControl} from '@angular/forms'
+import {FormControl} from '@angular/forms';
+import swal from 'sweetalert2';
 
 @Component({
   moduleId: module.id,
@@ -47,6 +48,12 @@ export class AllComViewComponent implements OnInit, OnDestroy {
     var messageId = (this.commercialsToDisplay.find(x => x.name == value))._id;
     this.MessagesService.deleteMessage(messageId);
     console.log(value);
+    swal({
+      title: 'Error!',
+      text: 'Do you want to continue',
+      type: 'error',
+      confirmButtonText: 'Cool'
+    })
     //this._postService.removePost(value);
     //this.updateView();
   }
@@ -55,6 +62,7 @@ export class AllComViewComponent implements OnInit, OnDestroy {
     // this.messageToUpdate = this.MessagesService.convertToJson(value.name, value.textInputs, value.imageInputs,
     //                                                   value.color, value.timeToShow, value.price, value.location, value.videoUrl, value.recomendSites);
     this.MessagesService.updateMessage( value);
+    swal('Any fool can use a computer');
     //this.ngOnInit();
   }
   onClick(value){
