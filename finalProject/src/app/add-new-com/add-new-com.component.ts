@@ -3,6 +3,7 @@ import {PostsService } from '../ServerCommunication/Communication-GetFirstPage';
 import {MessagesService} from '../Messages.service';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { $ } from "protractor/built";
+declare var swal: any;
 
 @Component({
   moduleId: module.id,
@@ -55,6 +56,11 @@ export class AddNewComComponent implements OnInit {
     this.MessagesService.insertMessage(this.message);
     this.message = '';
     this.clearCom();
+    swal(
+      'Good job!',
+      'You added a new commercial!',
+      'success'
+    )
   }
 
   clearCom(){

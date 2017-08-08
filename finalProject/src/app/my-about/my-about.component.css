@@ -13,3 +13,6 @@
   -webkit-transform: rotate(180deg); /* Safari */
   transform: rotate(180deg);
 }
+p{
+  font-family: 'Lucida Sans Unicode'; 
+}

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/cor
 import {PostsService} from "../ServerCommunication/Communication-GetFirstPage";
 import {MessagesService} from '../Messages.service';
 import {FormControl} from '@angular/forms';
-import swal from 'sweetalert2';
+declare var swal: any;
 
 @Component({
   moduleId: module.id,
@@ -46,23 +46,59 @@ export class AllComViewComponent implements OnInit, OnDestroy {
   }
 
   deleteCommercial(value){
+   swal({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'No, cancel!',
+  confirmButtonClass: 'btn btn-success',
+  cancelButtonClass: 'btn btn-danger',
+  buttonsStyling: false
+  }).then(function () {
     var messageId = (this.commercialsToDisplay.find(x => x.name == value))._id;
     this.MessagesService.deleteMessage(messageId);
-    console.log(value);
-    swal({
-      title: 'Error!',
-      text: 'Do you want to continue',
-      type: 'error',
-      confirmButtonText: 'Cool'
-    })
-     this.updateView();  
+    console.log(value);    
+    this.updateView();
+    swal(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  }, function (dismiss) {
+    // dismiss can be 'cancel', 'overlay',
+    // 'close', and 'timer'
+    if (dismiss === 'cancel') {
+      swal(
+        'Cancelled',
+        'Your imaginary add is safe :)',
+        'error'
+      )
+    }    
+  })      
   }
 
   updateMessage(value){
     // this.messageToUpdate = this.MessagesService.convertToJson(value.name, value.textInputs, value.imageInputs,
     //                                                   value.color, value.timeToShow, value.price, value.location, value.videoUrl, value.recomendSites);
     this.MessagesService.updateMessage( value);
-    swal('Any fool can use a computer');
+    swal({
+      title: 'Good job!',
+      type: 'info',
+      text: 'Youre message was updated.',
+      timer: 2000
+    }).then(
+      function () {},
+      // handling the promise rejection
+      function (dismiss) {
+        if (dismiss === 'timer') {
+          console.log('I was closed by the timer')
+        }
+      }
+    )
      this.updateView(); 
   }
   onClick(value){
