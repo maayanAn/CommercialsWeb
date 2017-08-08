@@ -22,26 +22,27 @@ export class AllComViewComponent implements OnInit, OnDestroy {
               private MessagesService: MessagesService){}
 
   ngOnInit() {
-    // this.updateView();
-    this.connection = this.MessagesService.getMessages().subscribe(message => {
-      this.messages = message;
-      this.originalCommercials = this.messages;
-      this.commercialsToDisplay = this.messages;
-    })
+     this.updateView();    
   }
   ngOnDestroy() {
     this.connection.unsubscribe();
   }
 
   updateView(){
-    this.originalCommercials = this._postService.getAllPosts();
-    console.log(this.originalCommercials);
-    this.commercialsToDisplay = [];
-    for (let com of this.originalCommercials) {
-      this.commercialsToDisplay.push(com);
-    }
+    this.connection = this.MessagesService.getMessages().subscribe(message => {
+      this.messages = message;
+      this.originalCommercials = this.messages;
+      this.commercialsToDisplay = this.messages;
+    })
 
-    console.log("view updated");
+    // this.originalCommercials = this._postService.getAllPosts();
+    // console.log(this.originalCommercials);
+    // this.commercialsToDisplay = [];
+    // for (let com of this.originalCommercials) {
+    //   this.commercialsToDisplay.push(com);
+    // }
+
+    // console.log("view updated");
   }
 
   deleteCommercial(value){
@@ -54,8 +55,7 @@ export class AllComViewComponent implements OnInit, OnDestroy {
       type: 'error',
       confirmButtonText: 'Cool'
     })
-    //this._postService.removePost(value);
-    //this.updateView();
+     this.updateView();  
   }
 
   updateMessage(value){
@@ -63,7 +63,7 @@ export class AllComViewComponent implements OnInit, OnDestroy {
     //                                                   value.color, value.timeToShow, value.price, value.location, value.videoUrl, value.recomendSites);
     this.MessagesService.updateMessage( value);
     swal('Any fool can use a computer');
-    //this.ngOnInit();
+     this.updateView(); 
   }
   onClick(value){
     this.commercialsToDisplay=[];

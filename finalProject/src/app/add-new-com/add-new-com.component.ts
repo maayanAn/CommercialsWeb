@@ -49,11 +49,24 @@ export class AddNewComComponent implements OnInit {
   }
 
   insertMessage(){
-    this.message = this.MessagesService.convertToJson(this.name, this.textInputs, this.imageInputs,
+    this.message = this.MessagesService.convertToJsonForInsert(this.name, this.textInputs, this.imageInputs,
                                                       this.color, this.timeToShow, this.price, 
                                                       this.location, this.videoUrl, this.recomendSites);
     this.MessagesService.insertMessage(this.message);
     this.message = '';
+    this.clearCom();
+  }
+
+  clearCom(){
+    this.name ="";
+    this.location = "";    
+    this.timeToShow = "";
+    this.price = "";
+    this.imageInputs = [];
+    this.textInputs = [];
+    this.videoUrl = "";
+    this.recomendSites = []; 
+    this.color = "#000000";
   }
 
   AddCom(value: any){
