@@ -19,11 +19,11 @@
         </div>
         <div class="form-group">
           <label>Price</label>
-          <input type="text" class="form-control" name="price" [ngModel]="price">
+          <input type="number" class="form-control" name="price" [ngModel]="price">
         </div>
         <div class="form-group">
           <label>Time to show</label>
-          <input type="text" class="form-control" name="timeToShow" [ngModel]="timeToShow">
+          <input type="number" class="form-control" name="timeToShow" [ngModel]="timeToShow">
         </div>
         <div class="form-group">
           <label>Text inputs</label>
@@ -35,11 +35,11 @@
         </div>        
          <div class="form-group">
           <label>Vido URL</label>
-          <input type="text" class="form-control"  name="videoUrl" [ngModel]="videoUrl">
+          <input type="url" class="form-control"  name="videoUrl" [ngModel]="videoUrl">
         </div> 
         <div class="form-group">
           <label>Recomended Sites</label>
-          <input type="text" class="form-control"  name="recomendedSites" [ngModel]="recomendedSites">
+          <input type="url" class="form-control"  name="recomendedSites" [ngModel]="recomendedSites">
         </div>
         <div>          
           <button (click)="OnSaveChanges(ComForm.value)" class="btn btn-primary">Save changes</button>

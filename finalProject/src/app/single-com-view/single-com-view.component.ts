@@ -2,6 +2,7 @@ import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import {PostsService } from '../ServerCommunication/Communication-GetFirstPage';
 import { FormsModule } from '@angular/forms';
 import {MessagesService} from '../Messages.service';
+declare var swal: any;
 
 @Component({
   moduleId: module.id,
@@ -40,25 +41,42 @@ export class SingleComViewComponent implements OnInit {
   constructor(private _postService : PostsService,  private MessagesService: MessagesService){}
 
   OnSaveChanges(value: any){
-    this.name = value.name;
-    this.location = value.location;
-    //this.color = value.color;
-    this.timeToShow = value.timeToShow;
-    this.price = value.price;
-    this.imageInputs = value.imageInputs;
-    this.textInputs = value.textInputs;
-    this.videoUrl = value.videoUrl;
-    this.recomendedSites = value.recomendedSites;
+    if (value.name !== "" && value.location !== "" &&
+        value.timeToShow !== "" && value.price!== "" &&
+        value.imageInputs !== "" && value.textInputs!== "" &&
+        value.videoUrl!== "" && value.recomendedSites!== ""){
 
-    this.messageToUpdate = this.MessagesService.convertToJson(this.name, this.textInputs, this.imageInputs,
-                                                      this.color, this.timeToShow, this.price, this.location,
-                                                      this.videoUrl, this.recomendedSites, this.id);
-    this.notifyUpdate.emit(this.messageToUpdate);      
+      this.name = value.name;
+      this.location = value.location;
+      //this.color = value.color;
+      this.timeToShow = value.timeToShow;
+      this.price = value.price;
+      if (typeof value.imageInputs === 'string')
+        this.imageInputs = value.imageInputs.split(',');
+      else
+        this.imageInputs = value.imageInputs;
+      if (typeof value.textInputs === 'string')
+        this.textInputs = value.textInputs.split(',');
+      else
+        this.textInputs = value.textInputs;
+      this.videoUrl = value.videoUrl;
+      if (typeof value.recomendedSites === 'string')
+        this.textInputs = value.textInputs.split(',');
+      else
+        this.textInputs = value.textInputs;
+
+      this.messageToUpdate = this.MessagesService.convertToJson(this.name, this.textInputs, this.imageInputs,
+                                                        this.color, this.timeToShow, this.price, this.location,
+                                                        this.videoUrl, this.recomendedSites, this.id);
+      this.notifyUpdate.emit(this.messageToUpdate);      
+    }else{
+      swal('Some fields are missing values!');
+    }
   }
   onDeleteItem(name: string){
     // this._postService.removePost(name);
     console.log("delete");
-    this.notifyDelete.emit(this.name);
+    this.notifyDelete.emit(this.id);
   }
 
   ngOnInit() {

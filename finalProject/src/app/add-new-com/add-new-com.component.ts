@@ -76,22 +76,31 @@ export class AddNewComComponent implements OnInit {
   }
 
   AddCom(value: any){
-    this.name = value.name;
-    this.location = value.location;    
-    this.timeToShow = value.timeToShow;
-    this.price = value.price;
-    this.imageInputs = value.imageInputs;
-    this.textInputs = value.textInputs;
-    this.videoUrl = value.videoUrl;
-    this.recomendSites = value.recomendSites;    
-    if (this.color == undefined){
-      this.color = "#000000";
-    }
-    //this._postService.addPost(this.name, this.textInputs,this.imageInputs,
+    if (value.name != undefined && value.location != undefined &&
+        value.timeToShow != undefined && value.price!=undefined &&
+        value.imageInputs != undefined && value.textInputs!= undefined&&
+        value.videoUrl!= undefined && value.recomendSites!=undefined){
+
+      this.name = value.name;
+      this.location = value.location;    
+      this.timeToShow = value.timeToShow;
+      this.price = value.price;
+      this.imageInputs = value.imageInputs.split(',');
+      this.textInputs = value.textInputs.split(',');
+      this.videoUrl = value.videoUrl;
+      this.recomendSites = value.recomendSites.split(',');    
+      if (this.color == undefined){
+        this.color = "#000000";
+      }
+      //this._postService.addPost(this.name, this.textInputs,this.imageInputs,
                               // this.color,this.timeToShow,this.price,this.location,
                               // this.videoUrl,this.recomendSites);
     
-    this.insertMessage();
+    
+      this.insertMessage();
+    }else{
+      swal('Some fields are missing values!');
+    }
   }
   
   ngOnDestroy() {

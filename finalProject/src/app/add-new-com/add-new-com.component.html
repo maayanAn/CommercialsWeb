@@ -7,39 +7,39 @@
     <div class="col-md-6 form-line">
       <div class="form-group">
         <label>Commercial Name</label>
-        <input type="text" class="form-control" name="name" [ngModel]="name"/>
+        <input type="text" class="form-control" name="name" [ngModel]="name" required/>
       </div>
       <div class="form-group">
         <label>Commercial Location</label>
-        <input type="text" class="form-control" name="location" [ngModel]="location">
+        <input type="text" class="form-control" name="location" [ngModel]="location" required>
       </div>
       <div class="form-group">
         <label>Background Color</label>        
-            <input type="color" class="form-control color" name="color" [(ngModel)]="color" (ngModelChange)="color = $event">               
+            <input type="color" class="form-control color" name="color" [(ngModel)]="color" (ngModelChange)="color = $event" required>               
       </div>
       <div class="form-group">
         <label>Price</label>
-        <input type="text" class="form-control" name="price" [ngModel]="price">
+        <input type="number" class="form-control" name="price" [ngModel]="price" required>
       </div>
       <div class="form-group">
         <label>Time to show</label>
-        <input type="text" class="form-control" name="timeToShow" [ngModel]="timeToShow">
+        <input type="number" class="form-control" name="timeToShow" [ngModel]="timeToShow" required>
       </div>
       <div class="form-group">
         <label>Text inputs</label>
-        <input type="text" class="form-control" name="textInputs" [ngModel]="textInputs">
+        <input type="text" class="form-control" name="textInputs" [ngModel]="textInputs" required>
       </div>
       <div class="form-group">
         <label>Image Inputs</label>
-        <input type="text" class="form-control"  name="imageInputs" [ngModel]="imageInputs">
+        <input type="url" class="form-control"  name="imageInputs" [ngModel]="imageInputs" required>
       </div>
       <div class="form-group">
         <label>Vido URL</label>
-        <input type="text" class="form-control"  name="videoUrl" [ngModel]="videoUrl">
+        <input type="url" class="form-control"  name="videoUrl" [ngModel]="videoUrl" required>
       </div>
       <div class="form-group">
         <label>Recomended Sites</label>
-        <input type="text" class="form-control"  name="recomendSites" [ngModel]="recomendSites">
+        <input type="url" class="form-control"  name="recomendSites" [ngModel]="recomendSites" required>
       </div>
       <button type="submit" class="btn btn-primary">Add</button>
     </div>
