@@ -41,8 +41,7 @@
   <ul style="list-style-type:none">
     <li *ngFor="let com of commercialsToDisplay; let index = index">
       <div>
-        <app-single-com-view (notifyDelete)="deleteCommercial($event)"  (notifyUpdate)="updateMessage($event)" id="{{index}}" [currentPost] = com></app-single-com-view>
-          <!-- <app-home-screen [allPost] = com id="{{index}}" ></app-home-screen>  -->
+        <app-single-com-view (notifyDelete)="deleteCommercial($event)"  (notifyUpdate)="updateMessage($event)" id="{{index}}" [currentPost] = com></app-single-com-view>          
         <hr>
       </div>
     </li>

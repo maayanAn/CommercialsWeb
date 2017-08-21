@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
-import {PostsService} from "../ServerCommunication/Communication-GetFirstPage";
 import {MessagesService} from '../Messages.service';
 import {FormControl} from '@angular/forms';
 declare var swal: any;
@@ -18,8 +17,7 @@ export class AllComViewComponent implements OnInit, OnDestroy {
   messages;
   messageToUpdate;
 
-  constructor(private _postService: PostsService,
-              private MessagesService: MessagesService){}
+  constructor(private MessagesService: MessagesService){}
 
   ngOnInit() {
      this.updateView();    
@@ -34,15 +32,6 @@ export class AllComViewComponent implements OnInit, OnDestroy {
       this.originalCommercials = this.messages;
       this.commercialsToDisplay = this.messages;
     })
-
-    // this.originalCommercials = this._postService.getAllPosts();
-    // console.log(this.originalCommercials);
-    // this.commercialsToDisplay = [];
-    // for (let com of this.originalCommercials) {
-    //   this.commercialsToDisplay.push(com);
-    // }
-
-    // console.log("view updated");
   }
 
   deleteCommercial(value){ 
@@ -56,8 +45,6 @@ export class AllComViewComponent implements OnInit, OnDestroy {
   }
 
   updateMessage(value){
-    // this.messageToUpdate = this.MessagesService.convertToJson(value.name, value.textInputs, value.imageInputs,
-    //                                                   value.color, value.timeToShow, value.price, value.location, value.videoUrl, value.recomendSites);
     this.MessagesService.updateMessage( value);
     swal({
       title: 'Good job!',
@@ -75,10 +62,7 @@ export class AllComViewComponent implements OnInit, OnDestroy {
     )
      this.updateView(); 
   }
-  onClick(value){
-    this.commercialsToDisplay=[];
-    this.commercialsToDisplay.push(this._postService.getAllPosts()[0]);
-  }
+
   onFilter(location,price,texts){
     console.log(location);
     console.log(price);

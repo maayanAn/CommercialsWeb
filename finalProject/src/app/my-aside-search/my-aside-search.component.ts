@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {PostsService} from '../ServerCommunication/Communication-GetFirstPage'
 import {DomSanitizer} from '@angular/platform-browser';
+import {MessagesService} from '../Messages.service';
 
 @Component({
   selector: 'app-my-aside-search',
   templateUrl: './my-aside-search.component.html',
   styleUrls: ['./my-aside-search.component.css'],
-  providers: [PostsService]
+  providers: [MessagesService]
 })
 export class MyAsideSearchComponent implements OnInit {
 
@@ -16,20 +16,20 @@ export class MyAsideSearchComponent implements OnInit {
   private url: any
   private showVideo: boolean
 
-  constructor(private _httpService: PostsService,
+  constructor(private MessagesService: MessagesService,
               private sanitizer: DomSanitizer) {
     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + 'hf9k3Xb5x6Y');
   }
 
   ngOnInit() {
-    this._httpService.getVeideosIds('Commercial').subscribe(
+    this.MessagesService.getVeideosIds('Commercial').subscribe(
       (data) => this.data = data,
       (err) => this.error = err);
     this.showVideo = false;
   }
 
   onSearchClick(searchQuery){
-    this._httpService.getVeideosIds(searchQuery).subscribe(
+    this.MessagesService.getVeideosIds(searchQuery).subscribe(
       (localData) => this.onVideoArrives(localData),
       (err) => this.error = err);
   }

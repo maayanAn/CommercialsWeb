@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, Renderer, ElementRef } from '@angular/core';
-import {PostsService } from '../ServerCommunication/Communication-GetFirstPage';
 import {MessagesService} from '../Messages.service';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { $ } from "protractor/built";
@@ -35,8 +34,7 @@ export class AddNewComComponent implements OnInit {
     return this._color;
   }
 
-  constructor(private _postService: PostsService,
-              private MessagesService: MessagesService,
+  constructor(private MessagesService: MessagesService,
             elementRef: ElementRef, renderer: Renderer) {}
 
   ngOnInit() {
@@ -91,11 +89,7 @@ export class AddNewComComponent implements OnInit {
       this.recomendSites = value.recomendSites.split(',');    
       if (this.color == undefined){
         this.color = "#000000";
-      }
-      //this._postService.addPost(this.name, this.textInputs,this.imageInputs,
-                              // this.color,this.timeToShow,this.price,this.location,
-                              // this.videoUrl,this.recomendSites);
-    
+      }   
     
       this.insertMessage();
     }else{

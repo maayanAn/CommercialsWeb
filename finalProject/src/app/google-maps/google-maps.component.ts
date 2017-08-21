@@ -27,12 +27,4 @@ export class GoogleMapsComponent implements OnChanges{
       }
     );
   }
-  // ngOnInit():any{
-  //   this._weatherService.getWeather(this.location).subscribe(
-  //     data=>{
-  //       this.lng = data.coord.lon;
-  //       this.lat = data.coord.lat;
-  //     }
-  //   );
-  // }
 }

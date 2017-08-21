@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {PostsService} from '../ServerCommunication/Communication-GetFirstPage'
+import {MessagesService} from '../Messages.service';
 import {DomSanitizer} from '@angular/platform-browser';
 @Component({
   selector: 'app-my-search-page',
   templateUrl: './my-search-page.component.html',
   styleUrls: ['./my-search-page.component.css'],
-  providers: [PostsService]
+  providers: [MessagesService]
 })
 export class MySearchPageComponent implements OnInit {
 
@@ -22,7 +22,7 @@ export class MySearchPageComponent implements OnInit {
   private vid5Url: any
 
   constructor(
-    private _httpService: PostsService,
+    private MessagesService: MessagesService,
     private sanitizer: DomSanitizer) {
     this.vid1Url = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + '-Pg819il8lY');
     this.vid5Url = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + '-Pg819il8lY');
@@ -37,7 +37,7 @@ export class MySearchPageComponent implements OnInit {
   }
 
   onSearchClick(searchQuery){
-    this._httpService.get5VeideosIds(searchQuery).subscribe(
+    this.MessagesService.get5VeideosIds(searchQuery).subscribe(
       (data) => this.onVideoArrives(data),
       (err) => this.error = err);
   }

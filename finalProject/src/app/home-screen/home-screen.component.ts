@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
-import {PostsService } from '../ServerCommunication/Communication-GetFirstPage';
 import { Http } from '@angular/http';
 import { HttpClient } from "@angular/common/http";
 import {Observable} from 'rxjs/Rx';
@@ -11,7 +10,7 @@ import {MessagesService} from '../Messages.service';
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
   styleUrls: ['./home-screen.component.css'],
-  providers: [PostsService, MessagesService],
+  providers: [MessagesService],
   inputs: [`allPost`]
 })
 
@@ -46,68 +45,18 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
 
    results: string[];
 
-  constructor(private _postService: PostsService,
-              private http: HttpClient,
+  constructor(private http: HttpClient,
               private sanitizer: DomSanitizer,
               private MessagesService: MessagesService){
                  this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + "cWe5tbMo2lU");
               }
 
   ngOnInit() {
-    // temp
-    // Ajax call from server
-    // this.http.get<ItemsResponse>('/data.json', {observe: 'response'}).subscribe(data => {
-    // // Read the result field from the JSON response.
-    // this.color = data.body.color;
-    // this.timeToShow =  data.body.time_to_show;
-    // this.textInputs =  data.body.textInputs;
-    // this.imageInputs =  data.body.imageInputs;
-    // this.price =  data.body.price;
-    // this.name =  data.body.name;
-    // this.location =  data.body.location;
-    // });
-
-
-    //  setInterval(() => { this.testInterval(); }, this.timeToShow);
-    //  setInterval(() => { this.ngOnInit(); }, this.timeToShow);
-
-    // Observable.interval(this.timeToShow).subscribe(x => {
-    //   this.testInterval();
-    // });
-
     // get all messages form server
     this.conn = this.MessagesService.getMessages().subscribe(message => {
       this.messages = message;
       console.log(this.messages[0]);
       this.setHomePage();
-
-      // go over all messages
-      // for(var i = 1; i <= this.messages.length; i++){
-    //   for (let message of this.messages) {
-    //      console.log(message);
-    //     // setInterval(() => {
-    //     //   this.setHomePage(message);
-    //     // },10000);
-    //     Observable.interval(5000).subscribe(x => {
-    //   this.setHomePage(message);
-    // });
-    //   }
-
-
-
-    // Observable.interval(5000).subscribe(x => {
-    //   this.setHomePage(this.messages[1]);
-    //   Observable.interval(5000).subscribe(x => {
-    //       this.setHomePage(this.messages[2]);
-    //       Observable.interval(5000).subscribe(x => {
-    //           this.setHomePage(this.messages[3]);
-    //           Observable.interval(5000).subscribe(x => {
-    //             this.setHomePage(this.messages[4]);
-    //           });
-    //       });
-    //   });
-    // });
-
 
       this.authenticate_loop();
 
@@ -141,13 +90,12 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
       this.recomendedSites = this.allPost.recomendedSites;
       if (this.index < this.messages.length - 1)
         this.index++;
-      else
-        this.index = 0;
+      else{
+        this.index = 0;      
+      }
   }
 
-    ngOnDestroy() {
-    // this.conn.unsubscribe();
-  }
+    ngOnDestroy() {}
 
   canvasLine = function(){
       // canvas line
@@ -206,7 +154,7 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
 
 
   loadYouTubeVideo() {
-    this._postService.getVeideosIds(this.name).subscribe(
+    this.MessagesService.getVeideosIds(this.name).subscribe(
       (data) => this.onVideoArrives(data),
       (err) => this.error = err);
   }

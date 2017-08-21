@@ -1,5 +1,4 @@
 import { Component, OnInit,Output, EventEmitter } from '@angular/core';
-import {PostsService } from '../ServerCommunication/Communication-GetFirstPage';
 import { FormsModule } from '@angular/forms';
 import {MessagesService} from '../Messages.service';
 declare var swal: any;
@@ -16,8 +15,7 @@ declare var swal: any;
 export class SingleComViewComponent implements OnInit {
   notifyDelete: EventEmitter<string>=new EventEmitter<string>();
   notifyUpdate: EventEmitter<string>=new EventEmitter<string>();
-  public name;
-  // public color;
+  public name;  
   private _color: string = '#000';
   public timeToShow;
   public location;
@@ -38,7 +36,7 @@ export class SingleComViewComponent implements OnInit {
     return this._color;
   }
 
-  constructor(private _postService : PostsService,  private MessagesService: MessagesService){}
+  constructor(private MessagesService: MessagesService){}
 
   OnSaveChanges(value: any){
     if (value.name !== "" && value.location !== "" &&
@@ -47,8 +45,7 @@ export class SingleComViewComponent implements OnInit {
         value.videoUrl!== "" && value.recomendedSites!== ""){
 
       this.name = value.name;
-      this.location = value.location;
-      //this.color = value.color;
+      this.location = value.location;      
       this.timeToShow = value.timeToShow;
       this.price = value.price;
       if (typeof value.imageInputs === 'string')
@@ -73,8 +70,7 @@ export class SingleComViewComponent implements OnInit {
       swal('Some fields are missing values!');
     }
   }
-  onDeleteItem(name: string){
-    // this._postService.removePost(name);
+  onDeleteItem(name: string){    
     console.log("delete");
     this.notifyDelete.emit(this.id);
   }
