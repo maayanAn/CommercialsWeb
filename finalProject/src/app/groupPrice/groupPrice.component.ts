@@ -11,8 +11,6 @@ import swal from 'sweetalert2';
   providers: [MessagesService],
 })
 export class GroupPriceComponent implements OnInit, OnDestroy {
-  notifyDelete: EventEmitter<string>=new EventEmitter<string>();
-  notifyUpdate: EventEmitter<string>=new EventEmitter<string>();
   public name:string[];
   public price;
   public comPrices:any;

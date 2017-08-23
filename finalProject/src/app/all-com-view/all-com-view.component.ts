@@ -64,9 +64,6 @@ export class AllComViewComponent implements OnInit, OnDestroy {
   }
 
   onFilter(location,price,texts){
-    console.log(location);
-    console.log(price);
-    console.log(this.originalCommercials);
     let filteredComs =[];
     for (let com of this.originalCommercials) {
       let isOk = true;
