@@ -8,7 +8,6 @@ export class WeatherService{
 
   }
   getWeather(countryName: string): Observable<any>{
-    //http://api.openweathermap.org/data/2.5/weather?q='+countryName+'&APPID=a6462808250b9a325ebacf09a42dbf26&units=metric
     return this._http.get('http://api.openweathermap.org/data/2.5/weather?q='+countryName+'&APPID=a6462808250b9a325ebacf09a42dbf26&units=metric')
       .map(response=>response.json())
       .catch(error=>{

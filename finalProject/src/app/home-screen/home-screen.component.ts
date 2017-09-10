@@ -55,7 +55,6 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
     // get all messages form server
     this.conn = this.MessagesService.getMessages().subscribe(message => {
       this.messages = message;
-      console.log(this.messages[0]);
       this.setHomePage();
     })
 
@@ -84,6 +83,7 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
       this.name = this.allPost.name;
       this.videoUrl = this.allPost.videoUrl;
       this.recomendedSites = this.allPost.recomendedSites;
+      this.showVideo = false;
       if (this.index < this.messages.length - 1)
         this.index++;
       else{
@@ -132,8 +132,6 @@ export class HomeScreenComponent implements OnInit, OnDestroy{
   onVideoArrives(localData){
     if(localData) {
       this.data = localData;
-      console.log('1');
-      console.log(this.data);
       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + this.data.items[0].id.videoId);
       this.showVideo = true;
     }

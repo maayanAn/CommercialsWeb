@@ -40,7 +40,8 @@ export class AddNewComComponent implements OnInit {
   ngOnInit() {
     this.connection = this.MessagesService.getMessages().subscribe(message => {
       this.messages.push(message);      
-    })     
+    })
+    this.videoUrl="https://www.youtube.com/embed/";
   }
 
   ngDoCheck(){

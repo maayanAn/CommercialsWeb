@@ -39,7 +39,7 @@ export class AllComViewComponent implements OnInit, OnDestroy {
    this.updateView();
    swal(
     'Good job!',
-    'Youre commercial was deleted!',
+    'Your commercial was deleted!',
     'success'
   );
   }
@@ -49,7 +49,7 @@ export class AllComViewComponent implements OnInit, OnDestroy {
     swal({
       title: 'Good job!',
       type: 'info',
-      text: 'Youre message was updated.',
+      text: 'Your message was updated.',
       timer: 2000
     }).then(
       function () {},

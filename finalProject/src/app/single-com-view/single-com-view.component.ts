@@ -58,9 +58,9 @@ export class SingleComViewComponent implements OnInit {
         this.textInputs = value.textInputs;
       this.videoUrl = value.videoUrl;
       if (typeof value.recomendedSites === 'string')
-        this.textInputs = value.textInputs.split(',');
+        this.recomendedSites = value.recomendedSites.split(',');
       else
-        this.textInputs = value.textInputs;
+        this.recomendedSites = value.recomendedSites;
 
       this.messageToUpdate = this.MessagesService.convertToJson(this.name, this.textInputs, this.imageInputs,
                                                         this.color, this.timeToShow, this.price, this.location,
